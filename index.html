@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Menu</title>
+    <title>Bakalokafenio Menu</title>
     <style>
         /* ---------- OUTER FRAME ---------- */
         body {
@@ -15,6 +15,7 @@
             padding: 10px 20px;
             border: 13px solid #7f5441;
             box-sizing: border-box;
+            position: relative;
         }
 
         /* ---------- INNER FRAME ---------- */
@@ -25,14 +26,32 @@
 
         h1 { color: #7f5441; text-align: center; text-transform: uppercase; letter-spacing: 2px; font-size: 27px; }
         
+        /* ---------- LANGUAGE TOGGLE ---------- */
+        .lang-gr { display: none; }
+
+        #lang-switch {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: #7f5441;
+            background-color: white;
+            z-index: 100;
+            text-transform: uppercase;
+            border: 1px solid #7f5441; 
+            padding: 5px 10px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            letter-spacing: 1px;
+        }
+
         /* ---------- COLLAPSIBLE STYLING ---------- */
         details summary {
-            list-style: none; /* Removes default arrow */
+            list-style: none;
             cursor: pointer;
             outline: none;
         }
         details summary::-webkit-details-marker {
-            display: none; /* Removes default arrow for Safari */
+            display: none;
         }
 
         h2 { 
@@ -52,189 +71,246 @@
         .menu-item2 { font-size: 0.85em; display: flex; justify-content: space-between; margin-bottom: 10px; }
         .menu-item3 { font-size: 0.85em; display: flex; justify-content: space-between; margin-bottom: 10px; margin-top: -12px; }
         div.menu-item3 span.item-name {
-        font-weight: normal !important;
-    }
+            font-weight: normal !important;
+        }
+
+        #topBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            z-index: 99;
+            border: 1px solid #7f5441;
+            outline: none;
+            background-color: white;
+            color: #7f5441;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+        #topBtn:hover {
+            opacity: 1;
+            background-color: #7f5441;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
+    <div id="lang-switch">
+        <div id="btn-to-gr" onclick="switchLang('gr')" style="cursor: pointer;">EN | <span style="opacity: 0.4;">EL</span></div>
+        <div id="btn-to-en" onclick="switchLang('en')" style="display:none; cursor: pointer;"><span style="opacity: 0.4;">EN</span> | EL</div>
+    </div>
+
     <div class="inner-frame">
 
-        <h1 style="margin-bottom: 0;">Bakalokafenio</h1>
-        <div class="menu-item2" style="margin-top: -10px; color: #7f5441; display: flex; justify-content: center; align-items: center; height: 30px">
+    <h1 style="margin-bottom: 0;">Bakalokafenio</h1>
+      <div class="menu-item2" style="margin-top: -10px; color: #7f5441; display: flex; justify-content: center; align-items: center; height: 30px">
             <span class="item-name">EST.1958</span>
         </div>
 
         <details>
-            <summary><h2 style="margin-top: 30px;">coffee</h2></summary>
+            <summary>
+                <h2><span class="lang-en">coffee</span><span class="lang-gr">καφες</span></h2>
+            </summary>
             <div class="menu-section">
-                <div class="menu-item"><span class="item-name">espresso</span><span class="item-price">2.2</span></div>
-                <div class="menu-item"><span class="item-name">double espresso</span><span class="item-price">3.5</span></div>
-                <div class="menu-item"><span class="item-name">americano hot / cold</span><span class="item-price">3.5</span></div>
-                <div class="menu-item"><span class="item-name">capuccino</span><span class="item-price">3.8</span></div>
-                <div class="menu-item"><span class="item-name">double capuccino</span><span class="item-price">4.8</span></div>
-                <div class="menu-item"><span class="item-name">latte hot / cold</span><span class="item-price">4.3</span></div>
-                <div class="menu-item"><span class="item-name">capuccino cold</span><span class="item-price">4.5</span></div>
-                <div class="menu-item"><span class="item-name">espresso cold</span><span class="item-price">4</span></div>
-                <div class="menu-item"><span class="item-name">filter coffee</span><span class="item-price">4.3</span></div>
-                <div class="menu-item"><span class="item-name">greek coffee</span><span class="item-price">2.2</span></div>
-                <div class="menu-item"><span class="item-name">double greek coffee</span><span class="item-price">3.5</span></div>
-                <div class="menu-item"><span class="item-name">instant coffee (nescafe)</span><span class="item-price">4</span></div>
-                <div class="menu-item"><span class="item-name">frappe</span><span class="item-price">4</span></div>
-                <div class="menu-item"><span class="item-name">frappe with ice-cream</span><span class="item-price">6</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">espresso</span><span class="lang-gr">εσπρέσο</span></span><span class="item-price">2.2</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">double espresso</span><span class="lang-gr">εσπρέσο διπλός</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">americano hot / cold</span><span class="lang-gr">αμερικάνο ζεστός / κρύος</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">capuccino</span><span class="lang-gr">καπουτσίνο</span></span><span class="item-price">3.8</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">double capuccino</span><span class="lang-gr">καπουτσίνο διπλός</span></span><span class="item-price">4.8</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">latte hot / cold</span><span class="lang-gr">λάτε ζεστός / κρύος</span></span><span class="item-price">4.3</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">capuccino cold</span><span class="lang-gr">φρέντο καπουτσίνο</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">espresso cold</span><span class="lang-gr">φρέντο εσπρέσο</span></span><span class="item-price">4</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">filter coffee</span><span class="lang-gr">φίλτρου</span></span><span class="item-price">4.3</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">greek coffee</span><span class="lang-gr">ελληνικός</span></span><span class="item-price">2.2</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">double greek coffee</span><span class="lang-gr">ελληνικός διπλός</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">instant coffee (nescafe)</span><span class="lang-gr">νες</span></span><span class="item-price">4</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">frappe</span><span class="lang-gr">φραπέ</span></span><span class="item-price">4</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">frappe with ice-cream</span><span class="lang-gr">φραπέ με παγωτό</span></span><span class="item-price">6</span></div>
                 <div style="height: 15px;"></div>
-                <div class="menu-item2"><span class="item-name">+ non dairy milk</span><span class="item-price">+0.5</span></div>
+                <div class="menu-item2"><span class="item-name"><span class="lang-en">+ non dairy milk</span><span class="lang-gr">+ φυτικό γάλα</span></span><span class="item-price">+0.5</span></div>
             </div>
         </details>
 
         <details>
-            <summary><h2>chocolate • tea</h2></summary>
+            <summary>
+                <h2><span class="lang-en">chocolate • tea</span><span class="lang-gr">σοκολατα • τσαι</span></h2>
+            </summary>
             <div class="menu-section">
-                <div class="menu-item"><span class="item-name">chocolate hot or cold</span><span class="item-price">4.5</span></div>
-                <div class="menu-item"><span class="item-name">chocolate with cinnamon & orange flavour</span><span class="item-price">4.5</span></div>
-                <div class="menu-item"><span class="item-name">mountain tea - organic herb</span><span class="item-price">4</span></div>
-                <div class="menu-item"><span class="item-name">wild sage mountain herb</span><span class="item-price">4</span></div>
-                <div class="menu-item"><span class="item-name">tea / chamomile</span><span class="item-price">4</span></div>
-                <div class="menu-item3"><span class="item-name">(green, earl grey, english breakfast)</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">chocolate hot or cold</span><span class="lang-gr">σοκολάτα ζεστή/κρύα</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">chocolate with cinnamon & orange flavour</span><span class="lang-gr">σοκολάτα με κανέλα & πορτοκάλι</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">mountain tea - organic herb</span><span class="lang-gr">τσάι βουνού - βιολογικό</span></span><span class="item-price">4</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">wild sage mountain herb</span><span class="lang-gr">φασκόμηλο</span></span><span class="item-price">4</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">tea / chamomile</span><span class="lang-gr">τσάι / χαμομήλι</span></span><span class="item-price">4</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">(green, earl grey, english breakfast)</span><span class="lang-gr">(πράσινο, earl grey, english breakfast)</span></span></div>
             </div>
         </details>
 
         <details>
-            <summary><h2>Juices  • soft drinks</h2></summary>
+            <summary>
+                <h2><span class="lang-en">Juices • soft drinks</span><span class="lang-gr">Χυμοι • αναψυκτικα</span></h2>
+            </summary>
             <div class="menu-section">
-                <div class="menu-item"><span class="item-name">freshly squeezed orange juice</span><span class="item-price">4.5</span></div>
-                <div class="menu-item"><span class="item-name">orange or mixed juice</span><span class="item-price">3</span></div>
-                <div class="menu-item"><span class="item-name">home made lemonade</span><span class="item-price">4.5</span></div>
-                <div class="menu-item"><span class="item-name">sour cherry soda</span><span class="item-price">3.5</span></div>
-                <div class="menu-item"><span class="item-name">ginger beer</span><span class="item-price">3.5</span></div>
-                <div class="menu-item3"><span class="item-name">(corfiot non-alcoholic soft drink)</span></div>
-                <div class="menu-item"><span class="item-name">soft drinks</span><span class="item-price">3</span></div>
-            </div>
-        </details>
-
-         <details>
-            <summary><h2>desserts</h2></summary>
-            <div class="menu-section">
-                <div class="menu-item2" style="justify-content: center; font-style: italic; color: #7f5441;">Our desserts are handmade in small batches. As they are prepared fresh daily, availability may vary.</div>
-                <div class="menu-item"><span class="item-name">greek cheesecake</span><span class="item-price">4.5</span></div>
-                <div class="menu-item3"><span class="item-name">with full fat greek yogurt, served with local honey, walnuts and fresh thyme</span></div>
-                <div class="menu-item"><span class="item-name">lemon pie</span><span class="item-price">4.5</span></div>
-                <div class="menu-item3"><span class="item-name">lemon curd, roasted almonds, vegetable whipped cream</span></div>
-                <div class="menu-item"><span class="item-name">chocolate cheesecake</span><span class="item-price">4.5</span></div>
-                <div class="menu-item3"><span class="item-name">full fat greek yogurt, chocolate hazelnut praline, kumquat bits and flavour</span></div>
-                <div class="menu-item"><span class="item-name">banoffee pie</span><span class="item-price">4.5</span></div>
-                <div class="menu-item3"><span class="item-name">dulce de leche, fresh bananas, chocolate ganache</span></div>
-                <div class="menu-item"><span class="item-name">burnt basque cheesecake</span><span class="item-price">5</span></div>
-                <div class="menu-item"><span class="item-name">ekmek</span><span class="item-price">5</span></div>
-                <div class="menu-item3"><span class="item-name">greek sweet bread with cream flavoured with mediterranean spices </span></div>
-                <div class="menu-item"><span class="item-name">karidopita</span><span class="item-price">4</span></div>
-                <div class="menu-item3"><span class="item-name">greek walnut cake - authentic recipe</span></div>
-            </div>
-        </details>
-
-         <details>
-            <summary><h2>yogurt bowls</h2></summary>
-            <div class="menu-section">
-                <div class="menu-item2" style="justify-content: center; font-style: italic; color: #7f5441;">Build your own bowl. Freshly assembled on the spot with your choice of toppings.</div>
-                <div class="menu-item"><span class="item-name">base</span><span class="item-price">3</span></div>
-                <div class="menu-item3"><span class="item-name">greek strained yogurt 8% fat</span></div>
-                <div class="menu-item"><span class="item-name">+ homemade baked granola</span><span class="item-price">+1.5</span></div>
-                <div class="menu-item"><span class="item-name">+homemade raw vegan granola</span><span class="item-price">+1.5</span></div>
-                <div class="menu-item"><span class="item-name">+fresh fruits</span><span class="item-price">+1.5</span></div>
-                <div class="menu-item3"><span class="item-name">in season</span></div>
-                <div class="menu-item"><span class="item-name">+raw nuts</span><span class="item-price">+1.5</span></div>
-                <div class="menu-item3"><span class="item-name">almonts, nuts, hazelnuts, Aegina pistachios</span></div>
-                <div class="menu-item"><span class="item-name">+topping</span><span class="item-price">+1.5</span></div>
-                <div class="menu-item3"><span class="item-name">homemade marmalade in season / honey / maple syrup</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">freshly squeezed orange juice</span><span class="lang-gr">φρεσκοστυμμένος χυμός πορτοκάλι</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">orange or mixed juice</span><span class="lang-gr">χυμός πορτοκάλι/ανάμεικτος</span></span><span class="item-price">3</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">home made lemonade</span><span class="lang-gr">σπιτική λεμονάδα</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">sour cherry soda</span><span class="lang-gr">βυσσινάδα με ανθρακικό</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">ginger beer</span><span class="lang-gr">τσιτσιμπύρα</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">(corfiot non-alcoholic soft drink)</span><span class="lang-gr">(το κερκυραϊκό μη αλκοολούχο αναψυκτικό με τζίντζερ)</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">soft drinks</span><span class="lang-gr">αναψυκτικά</span></span><span class="item-price">3</span></div>
             </div>
         </details>
 
         <details>
-            <summary><h2>pies • sandwiches</h2></summary>
+            <summary>
+                <h2><span class="lang-en">desserts</span><span class="lang-gr">γλυκα</span></h2>
+            </summary>
             <div class="menu-section">
-                <div class="menu-item"><span class="item-name">cheese pie / spinach n' cheese pie</span><span class="item-price">3</span></div>
-                <div class="menu-item"><span class="item-name">bougatsa</span><span class="item-price">3.5</span></div>
-                <div class="menu-item3"><span class="item-name">custard pie with phyllo and ground cinnamon</span></div>
-                <div class="menu-item"><span class="item-name">bread & butter</span><span class="item-price">5</span></div>
-                <div class="menu-item3"><span class="item-name">our sourdough bread with greek butter and homemade marmalade</span></div>
-                <div class="menu-item"><span class="item-name">toast</span><span class="item-price">3.5</span></div>
-                <div class="menu-item3"><span class="item-name">ham or turkey & cheese</span></div>
-                <div class="menu-item"><span class="item-name">greek toast</span><span class="item-price">4</span></div>
-                <div class="menu-item3"><span class="item-name">feta cheese, olive oil, oregano, sweet paprika</span></div>
-                <div class="menu-item"><span class="item-name">sandwich</span><span class="item-price">6</span></div>
-                <div class="menu-item3"><span class="item-name">ham or turkey, cheese, tomato</span></div>
-                <div class="menu-item"><span class="item-name">greek sandwich</span><span class="item-price">6.5</span></div>
-                <div class="menu-item3"><span class="item-name">sourdough sliced bread with feta cheese, tomato, olive oil, oregano and sweet paprika</span></div>
-                <div class="menu-item"><span class="item-name">tuna sandwich</span><span class="item-price">7</span></div>
-                <div class="menu-item3"><span class="item-name">sourdough sliced bread with tuna, cream cheese, cucumber and pickled onion</span></div>
-                <div class="menu-item"><span class="item-name">corfiot sandwich</span><span class="item-price">7</span></div>
-                <div class="menu-item3"><span class="item-name">sourdough sliced bread with graviera cheese, Noumboulo (marinated and smoked pork fillet) and fig pie (paste of dried figs flavored with ouzo, fennel seeds and black pepper)</span></div>
-                <div class="menu-item"><span class="item-name">hummus sandwich</span><span class="item-price">7</span></div>
-                <div class="menu-item3"><span class="item-name">hummus, red roasted peppers (florinis), cucumber and rocket</span></div>
-            </div>
-        </details>
-
-         <details>
-            <summary><h2>salads</h2></summary>
-            <div class="menu-section">
-                <div class="menu-item"><span class="item-name">greek salad</span><span class="item-price">8.5</span></div>
-                <div class="menu-item3"><span class="item-name">tomato, cucumber, greek peppers, olives, feta cheese</span></div>
-                <div class="menu-item"><span class="item-name">dakos</span><span class="item-price">8</span></div>
-                <div class="menu-item3"><span class="item-name">rusk with tomatoes, feta cheese, capari and olives</span></div>
-                <div class="menu-item"><span class="item-name">neratzosalata</span><span class="item-price">6.5</span></div>
-                <div class="menu-item3"><span class="item-name">corfiot orange salad. Orange slices with sea salt, sweet paprika and extra virgin olive oil</span></div>
+                <div class="menu-item2" style="justify-content: center; font-style: italic; color: #7f5441; text-align: center;">
+                    <span class="lang-en">Our desserts are handmade in small batches. As they are prepared fresh daily, availability may vary.</span>
+                    <span class="lang-gr">Παρασκευάζονται καθημερινά σε μικρές παρτίδες για να παραμένουν πάντα φρέσκα. Η διαθεσιμότητα ενδέχεται να διαφέρει".</span>
+                </div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">greek cheesecake</span><span class="lang-gr">ελληνικό τσιζκέϊκ</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">with full fat greek yogurt, served with local honey, walnuts and fresh thyme</span><span class="lang-gr">με πλήρες ελληνικό γιαούρτι, τοπικό μέλι, καρύδια και φρέσκο θυμάρι</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">lemon pie</span><span class="lang-gr">λεμονόπιτα</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">lemon curd, roasted almonds, vegetable whipped cream</span><span class="lang-gr">κρέμα λεμονιού, καβουρδισμένα αμύγδαλα, φυτική σαντιγύ</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">chocolate cheesecake</span><span class="lang-gr">σοκολατενιο τσιζκέϊκ</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">full fat greek yogurt, chocolate hazelnut praline, kumquat bits and flavour</span><span class="lang-gr">με πλήρες ελληνικό γιαούρτι, πραλίνα φουντουκιού, άρωμα και κομματάκια κουμ κουάτ</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">banoffee pie</span><span class="lang-gr">μπανόφι</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">dulce de leche, fresh bananas, chocolate ganache</span><span class="lang-gr">κρέμα καραμέλας γάλακτος, φρέσκιες μπανάνες, γκανάζ σοκολάτας</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">burnt basque cheesecake</span><span class="lang-gr">βάσκικο "καμένο" τσιζκέϊκ</span></span><span class="item-price">5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">ekmek</span><span class="lang-gr">εκμέκ τσουρέκι</span></span><span class="item-price">5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">greek sweet bread with cream flavoured with mediterranean spices </span><span class="lang-gr">σιροπιαστό χειροποίητο τσουρέκι με αρωματισμένη κρέμα και φυστίκι Αιγίνης</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">karidopita</span><span class="lang-gr">καρυδόπιτα</span></span><span class="item-price">4</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">greek walnut cake - authentic recipe</span><span class="lang-gr">αυθεντική συνταγή</span></span></div>
             </div>
         </details>
 
         <details>
-            <summary><h2>Wine, Beers & Spirits</h2></summary>
+            <summary>
+                <h2><span class="lang-en">yogurt bowls</span><span class="lang-gr">γιαουρτι</span></h2>
+            </summary>
             <div class="menu-section">
-                <div class="menu-item"><span class="item-name">glass of wine</span><span class="item-price">4.5</span></div>
-                <div class="menu-item"><span class="item-name">beer</span></div>
-                <div class="menu-item3"><span class="item-name">small bottle</span><span class="item-price">3.5</span></div>
-                <div class="menu-item3"><span class="item-name">large bottle</span><span class="item-price">4.5</span></div>
-                <div class="menu-item"><span class="item-name">corfu beer pilsner or red ale - large bottle</span><span class="item-price">5</span></div>
-                <div class="menu-item"><span class="item-name">ouzo/tsipouro</span><span class="item-price">3</span></div>
-                <div class="menu-item3"><span class="item-name">+ meze</span><span class="item-price">+5</span></div>
-                <div class="menu-item"><span class="item-name">kumquat liqueur</span><span class="item-price">4</span></div>
-                <div class="menu-item"><span class="item-name">kumquat spritz</span><span class="item-price">8</span></div>
-                <div class="menu-item"><span class="item-name">aperol spritz</span><span class="item-price">8</span></div>
+                <div class="menu-item2" style="justify-content: center; font-style: italic; color: #7f5441; text-align: center;">
+                    <span class="lang-en">Build your own bowl. Freshly assembled on the spot with your choice of toppings.</span>
+                    <span class="lang-gr">Παρασκευάζεται τη στιγμή της παραγγελίας</span>
+                </div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">base</span><span class="lang-gr">βάση</span></span><span class="item-price">3</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">greek strained yogurt 8% fat</span><span class="lang-gr">στραγγιστό γιαούρτι 8%</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">+ homemade baked granola</span><span class="lang-gr">+ χειροποίητη ψητή γκρανόλα</span></span><span class="item-price">+1.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">+homemade raw vegan granola</span><span class="lang-gr">+ χειροποίητη άψητη γκρανόλα (ve)</span></span><span class="item-price">+1.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">+fresh fruits</span><span class="lang-gr">+ φρέσκα φρούτα</span></span><span class="item-price">+1.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">in season</span><span class="lang-gr">εποχής</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">+raw nuts</span><span class="lang-gr">+ άψητοι ανάλατοι ξηροί καρποί</span></span><span class="item-price">+1.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">almonts, nuts, hazelnuts, Aegina pistachios</span><span class="lang-gr">αμύγδαλα, καρύδια, φουντούκια, φιστίκια Αιγίνης</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">+topping</span><span class="lang-gr">+ επικάλυψη</span></span><span class="item-price">+1.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">homemade marmalade in season / honey / maple syrup</span><span class="lang-gr">σπιτική μαρμελάδα κουμ κουάτ / μέλι / σιρόπι σφενδάμου</span></span></div>
             </div>
         </details>
 
-<hr style="border: 0; border-top: 1px solid #7f5441; margin-top: 40px; opacity: 0.3;">
+        <details>
+            <summary>
+                <h2><span class="lang-en">pies • sandwiches</span><span class="lang-gr">πιτες • σαντουιτς</span></h2>
+            </summary>
+            <div class="menu-section">
+                <div class="menu-item"><span class="item-name"><span class="lang-en">cheese pie / spinach n' cheese pie</span><span class="lang-gr">τυρόπιτα / σπανακοτυρόπιτα</span></span><span class="item-price">3</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">bougatsa</span><span class="lang-gr">μπουγάτσα</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">custard pie with phyllo and ground cinnamon</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">bread & butter</span><span class="lang-gr">ψωμί & βούτυρο</span></span><span class="item-price">5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">our sourdough bread with greek butter and homemade marmalade</span><span class="lang-gr">το προζυμένιο μας ψωμί με ελληνικό βούτυρο και σπιτική μαρμελάδα</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">toast</span><span class="lang-gr">τοστ</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">ham or turkey & cheese</span><span class="lang-gr">ζαμπόν ή γαλοπούλα & τυρί</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">greek toast</span><span class="lang-gr">φέτα τοστ</span></span><span class="item-price">4</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">feta cheese, olive oil, oregano, sweet paprika</span><span class="lang-gr">φέτα, ελαιόλαδο, ρίγανη, γλυκιά πάπρικα</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">sandwich</span><span class="lang-gr">σάντουιτς</span></span><span class="item-price">6</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">ham or turkey, cheese, tomato</span><span class="lang-gr">ζαμπόν ή γαλοπούλα, τυρί, ντομάτα</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">greek sandwich</span><span class="lang-gr">φέτα σάντουιτς</span></span><span class="item-price">6.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">sourdough sliced bread with feta cheese, tomato, olive oil, oregano and sweet paprika</span><span class="lang-gr">προζυμένιο ψωμί με φέτα, ντομάτα, ελαιόλαδο, ρίγανη και γλυκιά πάπρικα</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">tuna sandwich</span><span class="lang-gr">σάντουιτς τόνου</span></span><span class="item-price">7</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">sourdough sliced bread with tuna, cream cheese, cucumber and pickled onion</span><span class="lang-gr">προζυμένιο ψωμί με τόνο, τυρί κρέμα, αγγούρι και πίκλα κρεμμυδιού</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">corfiot sandwich</span><span class="lang-gr">κερκυραϊκό σάντουιτς</span></span><span class="item-price">7</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">sourdough sliced bread with graviera cheese, Noumboulo and fig pie</span><span class="lang-gr">προζυμένιο ψωμί σε φέτες με Κερκυραϊκή γραβιέρα, νούμπουλο (μαριναρισμένο και καπνιστό χοιρινό κόντρα φιλέτο) και συκομαΐδα (πάστα από λιαστά σύκα αρωματισμένη με ούζο, μαραθόσπορο και μαύρο πιπέρι)</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">hummus sandwich</span><span class="lang-gr">χούμους σάντουιτς</span></span><span class="item-price">7</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">hummus, red roasted peppers (florinis), cucumber and rocket</span><span class="lang-gr">χούμους, ψητή πιπεριά Φλωρίνης, αγγούρι και ρόκα</span></span></div>
+            </div>
+        </details>
 
-<div class="footer-info" style="text-align: center; color: #7f5441; margin-top: 30px; font-size: 0.9em;">
-    
-    <div style="margin-bottom: 3px;">
-        <a href="https://www.instagram.com/bakalokafenio/" target="_blank" style="text-decoration: none; display: inline-block;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7f5441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-        </a>
-    </div>
-    
-    <div style="margin-top: 20px; border: 1px dashed #7f5441; display: inline-block; padding: 12px 25px; line-height: 1.5;">
-        <span style="font-size: 0.75em; text-transform: uppercase; display: block; opacity: 0.8; letter-spacing: 1px;">Wi-Fi</span>
-        <div style="font-size: 0.95em;">
-            Network: <strong>bakalokafenio</strong><br>
-            Password: <strong>bakery1234</strong>
+        <details>
+            <summary>
+                <h2><span class="lang-en">salads</span><span class="lang-gr">σαλατες</span></h2>
+            </summary>
+            <div class="menu-section">
+                <div class="menu-item"><span class="item-name"><span class="lang-en">greek salad</span><span class="lang-gr">χωριάτικη</span></span><span class="item-price">8.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">tomato, cucumber, greek peppers, olives, feta cheese</span><span class="lang-gr">ντομάτα, αγγούρι, πράσινες πιπεριές, ελιές, φέτα</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">dakos</span><span class="lang-gr">ντάκος</span></span><span class="item-price">8</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">rusk with tomatoes, feta cheese, capari and olives</span><span class="lang-gr">κρίθινο παξιμάδι με ντομάτα, φέτα, κάπαρη και ελιές</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">neratzosalata</span><span class="lang-gr">κερκυραϊκή νερατζοσαλάτα</span></span><span class="item-price">6.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">corfiot orange salad. Orange slices with sea salt, sweet paprika and extra virgin olive oil</span><span class="lang-gr">φέτες πορτοκαλιού με φρεσκοτριμμένο αλάτι, γλυκιά πάπρικα και έξτρα παρθένο ελαιόλαδο</span></span></div>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <h2><span class="lang-en">Wine, Beers & Spirits</span><span class="lang-gr">κρασι, μπυρα & αλλα</span></h2>
+            </summary>
+            <div class="menu-section">
+                <div class="menu-item"><span class="item-name"><span class="lang-en">glass of wine</span><span class="lang-gr">ποτήρι κρασί</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">beer</span><span class="lang-gr">μπύρα</span></span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">small bottle</span><span class="lang-gr">μικρό μπουκάλι</span></span><span class="item-price">3.5</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">large bottle</span><span class="lang-gr">μεγάλο μπουκάλι</span></span><span class="item-price">4.5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">corfu beer pilsner or red ale - large bottle</span><span class="lang-gr">κερκυραϊκή μπύρα πράσινη ή κόκκινη - μεγάλο μπουκάλι</span></span><span class="item-price">5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">ouzo/tsipouro</span><span class="lang-gr">ούζο/τσίπουρο</span></span><span class="item-price">3</span></div>
+                <div class="menu-item3"><span class="item-name"><span class="lang-en">+ meze</span><span class="lang-gr">+ μεζές</span></span><span class="item-price">+5</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">kumquat liqueur</span><span class="lang-gr">λικέρ κουμ κουάτ</span></span><span class="item-price">4</span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">kumquat spritz</span><span class="lang-gr">κουμ κουάτ σπρίτς</span></span></div>
+                <div class="menu-item"><span class="item-name"><span class="lang-en">aperol spritz</span><span class="lang-gr">άπερολ σπρίτς</span></span></div>
+            </div>
+        </details>
+
+        <hr style="border: 0; border-top: 1px solid #7f5441; margin-top: 40px; opacity: 0.3;">
+        <div class="footer-info" style="text-align: center; color: #7f5441; margin-top: 30px; font-size: 0.9em;">
+            <div style="margin-bottom: 3px;">
+                <a href="https://www.instagram.com/bakalokafenio/" target="_blank" style="text-decoration: none; display: inline-block;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7f5441" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+            </div>
+            
+            <div style="margin-top: 20px; border: 1px dashed #7f5441; display: inline-block; padding: 12px 25px; line-height: 1.5;">
+                <span style="font-size: 0.75em; text-transform: uppercase; display: block; opacity: 0.8; letter-spacing: 1px;">Wi-Fi</span>
+                <div style="font-size: 0.95em;">
+                    <span class="lang-en">Network:</span><span class="lang-gr">Network:</span> <strong>bakalokafenio</strong><br>
+                    <span class="lang-en">Password:</span><span class="lang-gr">Password:</span> <strong>bakery1234</strong>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <a href="https://g.page/r/CTf4wXy__Qf9EAE/review" target="_blank" style="color: #7f5441; text-decoration: none; font-size: 0.85em; border: 1px solid #7f5441; padding: 10px 20px; display: inline-block; letter-spacing: 0.5px; text-transform: uppercase; font-weight: bold;">
+                   <span class="lang-en">We’d love to hear your thoughts</span>
+                   <span class="lang-gr">Πειτε μας τη γνωμη σας!</span>
+                </a>
+            </div>
         </div>
-    </div>
-
-  <div style="margin-top: 30px;">
-    <a href="https://www.google.com/search?sca_esv=097dd47c4a128256&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOWB5rIDd3s_XDi9OJtCrtDn9KRGzoCXzXrhDvje1fckdFDE_RaGjIkT_HUHSNR34QaPGXS3c64I9wu9cYPZ0VJ1Z1o3CX1ODUsKRMfyfCd2h1_nypYvpsIcG0Iv_4uO2RQqYab0%3D&q=Bakalokafenio+-+Michalas+Kostas+%CE%9A%CF%81%CE%B9%CF%84%CE%B9%CE%BA%CE%AD%CF%82&sa=X&ved=2ahUKEwjDrsmr3LCSAxVtVfEDHfgyJFgQ0bkNegQIHRAF&biw=1440&bih=692&dpr=2&aic=0" 
-       target="_blank"
-       style="color: #7f5441; text-decoration: none; font-size: 0.85em; border: 1px solid #7f5441; padding: 10px 20px; display: inline-block; letter-spacing: 0.5px; text-transform: uppercase; font-weight: bold;">
-       We’d love to hear your thoughts
-    </a>
-</div>
-
-</div>
-
     </div> 
 
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="topBtn" title="Go to top">↑</button>
+
+    <script>
+        function switchLang(lang) {
+            if (lang === 'gr') {
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.lang-gr').forEach(el => el.style.display = 'inline');
+                document.getElementById('btn-to-gr').style.display = 'none';
+                document.getElementById('btn-to-en').style.display = 'block';
+            } else {
+                document.querySelectorAll('.lang-gr').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'inline');
+                document.getElementById('btn-to-en').style.display = 'none';
+                document.getElementById('btn-to-gr').style.display = 'block';
+            }
+        }
+    </script>
 </body>
-</html>
+</html
